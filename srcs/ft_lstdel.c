@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbellona <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 22:49:04 by lbellona          #+#    #+#             */
-/*   Updated: 2018/12/09 17:12:52 by lbellona         ###   ########.fr       */
+/*   Created: 2018/12/09 18:57:51 by lbellona          #+#    #+#             */
+/*   Updated: 2018/12/09 19:50:16 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dest, const char *src, size_t n)
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	size_t		size;
+	t_list	*tmplst;
+	t_list	*nullst;
 
-	size = (size_t)(ft_strlen(src) <= n ? ft_strlen(src) : n);
-	if (size != n)
-		ft_memset(dest + size, '\0', n - size);
-	return (ft_memcpy(dest, src, size));
+	if (alst && *alst)
+	{
+		nullst = *alst;
+		while (*alst)
+		{
+			tmplst = *alst;
+			*alst = tmplst->next;
+			if (tmplst->content)
+				del(tmplst->content, tmplst->content_size);
+			free(tmplst);
+		}
+		nullst = NULL;
+	}
 }

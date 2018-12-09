@@ -6,42 +6,11 @@
 /*   By: lbellona <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 22:33:15 by lbellona          #+#    #+#             */
-/*   Updated: 2018/12/07 23:22:10 by lbellona         ###   ########.fr       */
+/*   Updated: 2018/12/10 00:19:57 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static size_t	ft_word_count(char const *s, char c)
-{
-	size_t		flag;
-	size_t		wc;
-
-	wc = 0;
-	flag = 0;
-	while (*s)
-	{
-		if (*s != c && !flag)
-		{
-			flag = 1;
-			wc++;
-		}
-		if (*s++ == c && flag)
-			flag = 0;
-	}
-	return (wc);
-}
-
-static char		**ft_cleanstrmem(char **s)
-{
-	char **sp;
-
-	sp = s;
-	while (*sp)
-		ft_strdel(sp++);
-	ft_strdel(s);
-	return (NULL);
-}
 
 static char		**ft_arr_alloc(char const *s, char c)
 {

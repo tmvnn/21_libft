@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_cleanstrmem.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbellona <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 22:49:04 by lbellona          #+#    #+#             */
-/*   Updated: 2018/12/09 17:12:52 by lbellona         ###   ########.fr       */
+/*   Created: 2018/12/10 00:17:52 by lbellona          #+#    #+#             */
+/*   Updated: 2018/12/10 00:21:19 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dest, const char *src, size_t n)
+char	**ft_cleanstrmem(char **s)
 {
-	size_t		size;
+	char **sp;
 
-	size = (size_t)(ft_strlen(src) <= n ? ft_strlen(src) : n);
-	if (size != n)
-		ft_memset(dest + size, '\0', n - size);
-	return (ft_memcpy(dest, src, size));
+	sp = s;
+	while (*sp)
+		ft_strdel(sp++);
+	ft_strdel(s);
+	return (NULL);
 }
